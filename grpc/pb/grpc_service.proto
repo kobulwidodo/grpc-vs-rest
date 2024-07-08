@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package grpc_service;
+
+option go_package = "./pb/grpc_service";
+
+service GrpcService {
+  rpc GetList(GetListRequest) returns (GetListResponse) {}
+  rpc GetLarge(GetLargeRequest) returns (GetLargeResponse) {}
+}
+
+// GetList
+
+message GetListData {
+  int64 id = 1;
+  string created_at = 2;
+  string updated_at = 3;
+  string deleted_at = 4;
+  string username = 5;
+  string password = 6;
+  string name = 7;
+}
+
+message GetListRequest { }
+
+message GetListResponse {
+  string error = 2;
+  repeated GetListData data = 3;
+}
+
+// GetLarge
+
+message GetLargeData {
+  int64 a = 1;
+}
+
+message GetLargeRequest { }
+
+message GetLargeResponse {
+  repeated GetLargeData data = 1;
+}
